@@ -1,4 +1,4 @@
-package api.pojos;
+package api.pojos.Login;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class Login {
+public class Login_Input {
     private String userEmail;
     private String userPassword;
 }

@@ -1,6 +1,6 @@
 package steps;
 
-import api.pojos.Registration;
+import api.pojos.Registration.Registration_Input;
 import api.requestSpecificationFactory.Registration_RequestSpecification;
 import api.utils.Payloads;
 import io.cucumber.java.en.And;
@@ -15,20 +15,20 @@ import static org.junit.Assert.assertEquals;
 public class RegistrationSteps {
 
     private static Response response;
-    private Registration registration;
+    private Registration_Input registrationInput;
     private static String usedEmailAddress;
 
     @When("user sends valid POST registration request")
     public void userSendsValidDataAndRegister() {
         String basePath = "/auth/register";
 
-        registration = Payloads.registrationPayload();
-        usedEmailAddress = registration.getUserEmail();
+        registrationInput = Payloads.registrationPayload();
+        usedEmailAddress = registrationInput.getUserEmail();
 
         response = RestAssured.given()
                 .log().all()
                 .spec(Registration_RequestSpecification.requestSpecification())
-                .body(registration)
+                .body(registrationInput)
                 .when().post(basePath).then().log().all().extract().response();
     }
 
@@ -48,12 +48,12 @@ public class RegistrationSteps {
     public void userSendsInvalidPOSTRegistrationRequestWithExistingEmail() {
         String basePath = "/auth/register";
 
-        registration = Payloads.registrationPayload();
-        registration.setUserEmail(usedEmailAddress);
+        registrationInput = Payloads.registrationPayload();
+        registrationInput.setUserEmail(usedEmailAddress);
         response = RestAssured.given()
                 .log().all()
                 .spec(Registration_RequestSpecification.requestSpecification())
-                .body(registration)
+                .body(registrationInput)
                 .when().post(basePath).then().log().all().extract().response();
     }
 }

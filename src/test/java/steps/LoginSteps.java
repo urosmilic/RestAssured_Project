@@ -1,5 +1,6 @@
 package steps;
 
+import api.pojos.Login.Login_Output;
 import api.requestSpecificationFactory.Registration_RequestSpecification;
 import api.utils.Payloads;
 import io.cucumber.java.en.And;
@@ -12,7 +13,8 @@ import io.restassured.response.Response;
 import static org.junit.Assert.assertEquals;
 
 public class LoginSteps {
-    Response response;
+    private Response response;
+    public static String authorizationToken;
     @When("user sends valid POST login request")
     public void userSendsValidPOSTLoginRequest() {
         String basePath = "/auth/login";
@@ -34,5 +36,11 @@ public class LoginSteps {
         JsonPath jsonPath = new JsonPath(response.asString());
         String message = jsonPath.getString("message");
         assertEquals(expectedMessage, message);
+    }
+
+    @And("user extracts authorization token")
+    public void userExtractsAuthorizationToken() {
+        Login_Output login_output = response.as(Login_Output.class);
+        authorizationToken = login_output.getToken();
     }
 }

@@ -1,4 +1,4 @@
-package api.pojos;
+package api.pojos.Registration;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class Registration {
+public class Registration_Input {
     private String firstName;
     private String lastName;
     private String userEmail;
