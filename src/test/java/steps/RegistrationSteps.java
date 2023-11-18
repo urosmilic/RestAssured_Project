@@ -27,7 +27,7 @@ public class RegistrationSteps {
 
         response = RestAssured.given()
                 .log().all()
-                .spec(Registration_RequestSpecification.postRegistrationRequest())
+                .spec(Registration_RequestSpecification.requestSpecification())
                 .body(registration)
                 .when().post(basePath).then().log().all().extract().response();
     }
@@ -37,7 +37,7 @@ public class RegistrationSteps {
         assertEquals(response.statusCode(),statusCode);
     }
 
-    @And("user gets the message {string}")
+    @And("user gets the registration message {string}")
     public void userGetsTheMessageAfterRegistrationRequest(String expectedMessage) {
         JsonPath js = new JsonPath(response.asString());
         String message = js.getString("message");
@@ -52,7 +52,7 @@ public class RegistrationSteps {
         registration.setUserEmail(usedEmailAddress);
         response = RestAssured.given()
                 .log().all()
-                .spec(Registration_RequestSpecification.postRegistrationRequest())
+                .spec(Registration_RequestSpecification.requestSpecification())
                 .body(registration)
                 .when().post(basePath).then().log().all().extract().response();
     }

@@ -19,5 +19,4 @@ public class Registration {
     private String userPassword;
     private String confirmPassword;
     private boolean required;
-
 }

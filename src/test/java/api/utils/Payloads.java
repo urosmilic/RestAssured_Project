@@ -1,8 +1,8 @@
 package api.utils;
 
+import api.pojos.Login;
 import api.pojos.Registration;
 import com.github.javafaker.Faker;
-
 
 public class Payloads {
 
@@ -23,4 +23,10 @@ public class Payloads {
                 .build();
     }
 
+    public static Login loginPayload() {
+        return Login.builder()
+                .userEmail("testiranje12345@gmail.com")
+                .userPassword("Testiranje1234")
+                .build();
+    }
 }

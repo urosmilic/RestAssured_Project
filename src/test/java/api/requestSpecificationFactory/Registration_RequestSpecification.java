@@ -7,12 +7,9 @@ import io.restassured.specification.RequestSpecification;
 
 public class Registration_RequestSpecification {
 
-
-    public static RequestSpecification postRegistrationRequest() {
+    public static RequestSpecification requestSpecification() {
         return new RequestSpecBuilder().build()
                 .baseUri(Constants.baseURI).contentType(ContentType.JSON);
     }
-
-
 
 }
