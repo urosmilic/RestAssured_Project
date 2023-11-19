@@ -23,7 +23,8 @@ public class Product {
     private String productAddedBy;
     private int __v;
 
-/*                "_id": "6262e95ae26b7e1a10e89bf0",
+/*
+                "_id": "6262e95ae26b7e1a10e89bf0",
                 "productName": "zara coat 3",
                 "productCategory": "fashion",
                 "productSubCategory": "shirts",

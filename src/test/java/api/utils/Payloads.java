@@ -1,8 +1,12 @@
 package api.utils;
 
 import api.pojos.Login.Login_Input;
+import api.pojos.Product.Product;
+import api.pojos.Product.ProductList_Input;
 import api.pojos.Registration.Registration_Input;
 import com.github.javafaker.Faker;
+
+import java.util.ArrayList;
 
 public class Payloads {
 
@@ -27,6 +31,16 @@ public class Payloads {
         return Login_Input.builder()
                 .userEmail("testiranje12345@gmail.com")
                 .userPassword("Testiranje1234")
+                .build();
+    }
+
+    public static ProductList_Input emptyProductPayload() {
+        return ProductList_Input.builder()
+                .maxPrice(null).minPrice(null)
+                .productCategory(new ArrayList<>())
+                .productFor(new ArrayList<>())
+                .productName("")
+                .productSubCategory(new ArrayList<>())
                 .build();
     }
 }

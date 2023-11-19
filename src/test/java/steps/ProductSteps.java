@@ -1,12 +1,16 @@
 package steps;
 
-import api.pojos.Product.ProductList_Input;
 import api.pojos.Product.ProductList_Output;
-import api.requestSpecificationFactory.Registration_RequestSpecification;
+import api.utils.RequestSpecificationFactory;
+import api.utils.ApiClient;
+import api.utils.Payloads;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
 import io.restassured.response.Response;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,13 +20,11 @@ public class ProductSteps {
 
     @When("user sends valid POST all products request")
     public void userSendsValidPOSTAllProductsRequest() {
-        String basePath = "/product/get-all-products";
-        ProductList_Input product_List_input = new ProductList_Input();
+        String resource = "/product/get-all-products";
 
-        response = RestAssured.given().header("Authorization", LoginSteps.authorizationToken)
-                .log().all().body(product_List_input)
-                .spec(Registration_RequestSpecification.requestSpecification())
-                .when().post(basePath).then().log().all().extract().response();
+        Headers headers = new Headers(List.of(new Header("Authorization", LoginSteps.authorizationToken)));
+        response = ApiClient.sendPostRequest(RequestSpecificationFactory.requestSpecificationWithHeaders(headers),
+                Payloads.emptyProductPayload(), resource);
     }
 
     @Then("user gets list of all products with the message {string}")

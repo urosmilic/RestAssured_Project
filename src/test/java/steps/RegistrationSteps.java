@@ -1,12 +1,12 @@
 package steps;
 
 import api.pojos.Registration.Registration_Input;
-import api.requestSpecificationFactory.Registration_RequestSpecification;
+import api.utils.RequestSpecificationFactory;
+import api.utils.ApiClient;
 import api.utils.Payloads;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -20,16 +20,13 @@ public class RegistrationSteps {
 
     @When("user sends valid POST registration request")
     public void userSendsValidDataAndRegister() {
-        String basePath = "/auth/register";
+        String resource = "/auth/register";
 
         registrationInput = Payloads.registrationPayload();
         usedEmailAddress = registrationInput.getUserEmail();
 
-        response = RestAssured.given()
-                .log().all()
-                .spec(Registration_RequestSpecification.requestSpecification())
-                .body(registrationInput)
-                .when().post(basePath).then().log().all().extract().response();
+        response = ApiClient.sendPostRequest
+                (RequestSpecificationFactory.requestSpecification(), registrationInput, resource);
     }
 
     @Then("user is {string} registered with status code {int}")
@@ -46,14 +43,12 @@ public class RegistrationSteps {
 
     @When("user sends invalid POST registration request with existing email")
     public void userSendsInvalidPOSTRegistrationRequestWithExistingEmail() {
-        String basePath = "/auth/register";
+        String resource = "/auth/register";
 
         registrationInput = Payloads.registrationPayload();
         registrationInput.setUserEmail(usedEmailAddress);
-        response = RestAssured.given()
-                .log().all()
-                .spec(Registration_RequestSpecification.requestSpecification())
-                .body(registrationInput)
-                .when().post(basePath).then().log().all().extract().response();
+
+        response = ApiClient.sendPostRequest
+                (RequestSpecificationFactory.requestSpecification(), registrationInput, resource);
     }
 }
