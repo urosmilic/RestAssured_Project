@@ -6,8 +6,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Builder
 public class ProductList_Input {
     private String productName;
@@ -16,13 +14,4 @@ public class ProductList_Input {
     private List<String> productCategory;
     private List<String> productSubCategory;
     private List<String> productFor;
-
-/*
-        "productName": "",
-        "minPrice": null,
-        "maxPrice": null,
-        "productCategory": [],
-        "productSubCategory": [],
-        "productFor": []
-*/
 }

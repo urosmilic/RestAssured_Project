@@ -14,7 +14,9 @@ import static org.junit.Assert.assertEquals;
 
 public class LoginSteps {
     private Response response;
-    public static String authorizationToken;
+    protected static String authorizationToken;
+    protected static String userId;
+
     @When("user sends POST login request with {string} and {string}")
     public void userSendsPOSTLoginRequest(String email, String password) {
         String resource = "/auth/login";
@@ -34,9 +36,10 @@ public class LoginSteps {
         assertEquals(expectedMessage, message);
     }
 
-    @And("user extracts authorization token")
-    public void userExtractsAuthorizationToken() {
+    @And("user extracts authorization token and user Id")
+    public void userExtractsAuthorizationTokenAndUserId() {
         Login_Output login_output = response.as(Login_Output.class);
         authorizationToken = login_output.getToken();
+        userId = login_output.getUserId();
     }
 }
