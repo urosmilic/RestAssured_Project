@@ -27,10 +27,10 @@ public class Payloads {
                 .build();
     }
 
-    public static Login_Input loginPayload() {
+    public static Login_Input loginPayload(String mail, String password) {
         return Login_Input.builder()
-                .userEmail("testiranje12345@gmail.com")
-                .userPassword("Testiranje1234")
+                .userEmail(mail)
+                .userPassword(password)
                 .build();
     }
 

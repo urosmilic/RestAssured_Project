@@ -15,11 +15,11 @@ import static org.junit.Assert.assertEquals;
 public class LoginSteps {
     private Response response;
     public static String authorizationToken;
-    @When("user sends valid POST login request")
-    public void userSendsValidPOSTLoginRequest() {
+    @When("user sends POST login request with {string} and {string}")
+    public void userSendsPOSTLoginRequest(String email, String password) {
         String resource = "/auth/login";
         response = ApiClient.sendPostRequest
-                (RequestSpecificationFactory.requestSpecification(), Payloads.loginPayload(), resource);
+                (RequestSpecificationFactory.requestSpecification(), Payloads.loginPayload(email, password), resource);
     }
 
     @Then("user is {string} logged in with status code {int}")
