@@ -1,4 +1,4 @@
-package api.pojos.Registration;
+package api.pojos.registration;
 
 import lombok.*;
 

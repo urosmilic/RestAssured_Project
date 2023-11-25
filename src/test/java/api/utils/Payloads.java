@@ -1,9 +1,8 @@
 package api.utils;
 
-import api.pojos.Login.Login_Input;
-import api.pojos.Product.Product;
-import api.pojos.Product.ProductList_Input;
-import api.pojos.Registration.Registration_Input;
+import api.pojos.login.Login_Input;
+import api.pojos.product.ProductList_Input;
+import api.pojos.registration.Registration_Input;
 import com.github.javafaker.Faker;
 
 import java.util.ArrayList;

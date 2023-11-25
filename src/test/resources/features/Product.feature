@@ -24,3 +24,15 @@ Feature: Product manipulation scenarios
     And user extracts information from one of the products
     And user sends POST add to cart request
     Then product is successfully added to the cart with the message "Product Added To Cart"
+    And user sends GET cart request
+    And user validates the cart content
+
+  @smoke @regression
+  Scenario: Creation of the order
+    When user sends valid POST all products request
+    And  user gets list of all products with the message "All Products fetched Successfully"
+    And user extracts information from one of the products
+    And user sends valid POST create order request
+    Then user gets order Id with the message "Order Placed Successfully"
+    And user sends valid GET order details request
+    And user validate order details with the message "Orders fetched for customer Successfully"

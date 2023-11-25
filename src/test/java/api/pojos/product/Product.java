@@ -1,4 +1,4 @@
-package api.pojos.Product;
+package api.pojos.product;
 
 import lombok.*;
 

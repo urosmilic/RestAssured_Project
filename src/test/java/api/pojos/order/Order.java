@@ -1,4 +1,4 @@
-package api.pojos.Product;
+package api.pojos.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,10 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class AddToCart_Input {
-    private String _id;
-    private Product product;
+public class Order {
+    private String country;
+    private String productOrderedId;
 }

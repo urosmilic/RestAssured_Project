@@ -1,6 +1,6 @@
 package steps;
 
-import api.pojos.Login.Login_Output;
+import api.pojos.login.Login_Output;
 import api.utils.RequestSpecificationFactory;
 import api.utils.ApiClient;
 import api.utils.Payloads;
@@ -16,11 +16,13 @@ public class LoginSteps {
     private Response response;
     protected static String authorizationToken;
     protected static String userId;
+    protected static String userEmail;
 
     @When("user sends POST login request with {string} and {string}")
     public void userSendsPOSTLoginRequest(String email, String password) {
         String resource = "/auth/login";
-        response = ApiClient.sendPostRequest
+        userEmail = email;
+                response = ApiClient.sendPostRequest
                 (RequestSpecificationFactory.requestSpecification(), Payloads.loginPayload(email, password), resource);
     }
 

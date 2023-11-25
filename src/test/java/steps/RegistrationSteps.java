@@ -1,6 +1,6 @@
 package steps;
 
-import api.pojos.Registration.Registration_Input;
+import api.pojos.registration.Registration_Input;
 import api.utils.RequestSpecificationFactory;
 import api.utils.ApiClient;
 import api.utils.Payloads;
