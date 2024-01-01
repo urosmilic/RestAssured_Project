@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = {"steps"},
         tags = "@regression",
-        plugin = {"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"})
+        plugin = {"pretty", "html:target/cucumber-reports"})
 public class CucumberRunner {
 
 }
