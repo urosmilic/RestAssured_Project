@@ -1,0 +1,43 @@
+on:
+  workflow_dispatch:
+    inputs:
+      cucumber_tags:
+        description: 'Cucumber tags'
+        required: true
+        default: '@regression'
+  schedule:
+    - cron: '0 6 * * *'  # Schedule daily at 6 AM UTC
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      CUCUMBER_TAGS: ${{ github.event.inputs.cucumber_tags || '@regression' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean install -Dcucumber.options="--tags ${CUCUMBER_TAGS}" -B
+
+      - name: Run Selenium Tests
+        run: mvn test -Dcucumber.options="--tags ${CUCUMBER_TAGS}"
+        continue-on-error: true
+
+      - name: Generate Allure Report
+        run: mvn allure:report
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/allure-report
+          publish_branch: gh-pages
