@@ -84,18 +84,18 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit-platform</artifactId>
-            <scope>test</scope>
+            <version>2.25.0</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
-            <scope>test</scope>
+            <version>2.25.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
-            <scope>test</scope>
+            <version>7.14.0</version>     
         </dependency>             
 
     </dependencies>
