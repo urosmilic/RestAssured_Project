@@ -26,10 +26,10 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
-        run: mvn clean install -Dcucumber.options="--tags ${CUCUMBER_TAGS}" -B
+        run: mvn clean install
 
       - name: Run Selenium Tests
-        run: mvn test -Dcucumber.options="--tags ${CUCUMBER_TAGS}"
+        run: mvn test "-DargLine=-Dcucumber.filter.tags=${CUCUMBER_TAGS}"
         continue-on-error: true
 
       - name: Download Allure Command Line
