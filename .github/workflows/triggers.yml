@@ -26,20 +26,14 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean compile
 
-      - name: Run Selenium Tests
-        run: mvn test "-DargLine=-Dcucumber.filter.tags=${CUCUMBER_TAGS}"
+      - name: Run Cucumber tests
+        run: mvn test -D'cucumber.filter.tags'=${CUCUMBER_TAGS}
         continue-on-error: true
 
-      - name: Download Allure Command Line
-        run: |
-          wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.15.0/allure-commandline-2.15.0.zip
-          unzip allure-commandline-2.15.0.zip -d allure
-          echo "export PATH=\$PATH:$(pwd)/allure/bin" >> $GITHUB_ENV
-
       - name: Get Allure history
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         if: always()
         continue-on-error: true
         with:
@@ -47,13 +41,10 @@ jobs:
           path: gh-pages
 
       - name: Allure Report action from marketplace
-        uses: simple-elf/allure-report-action@master
+        uses: simple-elf/allure-report-action@v1.7
         if: always()
-        id: allure-report
         with:
           allure_results: target/allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
           allure_history: allure-history
 
       - name: Deploy report to Github Pages
