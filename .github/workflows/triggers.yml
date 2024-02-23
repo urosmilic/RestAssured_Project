@@ -6,8 +6,8 @@ on:
         description: 'Cucumber tags'
         required: true
         default: '@regression'
-  schedule:
-    - cron: '0 6 * * *'  # Schedule daily at 6 AM UTC
+  # schedule:
+    # - cron: '0 6 * * *'  # Schedule daily at 6 AM UTC
 
 jobs:
   test:
