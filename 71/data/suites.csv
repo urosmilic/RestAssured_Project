@@ -1,0 +1,8 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Apr 29 10:31:26 GMT 2024","Mon Apr 29 10:31:27 GMT 2024","883","","","","","","Successful login - happy path #2",""
+"passed","Mon Apr 29 10:31:34 GMT 2024","Mon Apr 29 10:31:37 GMT 2024","3048","","","","","","Creation of the order",""
+"passed","Mon Apr 29 10:31:23 GMT 2024","Mon Apr 29 10:31:26 GMT 2024","3500","","","","","","Successful login - happy path #1",""
+"passed","Mon Apr 29 10:31:27 GMT 2024","Mon Apr 29 10:31:29 GMT 2024","1693","","","","","","Get all products",""
+"passed","Mon Apr 29 10:31:31 GMT 2024","Mon Apr 29 10:31:34 GMT 2024","3065","","","","","","Add product to the cart",""
+"passed","Mon Apr 29 10:31:37 GMT 2024","Mon Apr 29 10:31:38 GMT 2024","936","","","","","","Successful registration - happy path",""
+"passed","Mon Apr 29 10:31:29 GMT 2024","Mon Apr 29 10:31:31 GMT 2024","2339","","","","","","Get a specific product from the list based on the product Id",""
